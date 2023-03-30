@@ -24,6 +24,12 @@ public class RedisConnectionMultiplexer : IRedisConnectionMultiplexer, IDisposab
         };
     }
 
+    public async ValueTask<ISubscriber> GetSubscriberAsync(string channel)
+    {
+        var multiplexer = await ConnectAsync();
+        return multiplexer.GetSubscriber(channel);
+    }
+
     public async ValueTask<IDatabase> GetDatabaseAsync()
     {
         var multiplexer = await ConnectAsync();

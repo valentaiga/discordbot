@@ -34,6 +34,8 @@ void ConfigureServices(IServiceCollection services)
         .AddSingleton<CommandHandlingService>()
         .AddSingleton<DiscordBotClient>();
 
+    services.AddSingleton<EventPublisher>();
+    
     services.AddSingleton<IProfileService, ProfileService>();
     services.AddSingleton<MessageBeautifier>();
 
@@ -44,6 +46,7 @@ void ConfigureServices(IServiceCollection services)
     });
 
     services.AddSingleton<IInitializationModule, CommandsInitialization>();
+    services.AddSingleton<IInitializationModule, EventsInitialization>();
 
     services.AddOptions<DiscordClientOptions>()
         .Configure(_ => _.Token = Environment.GetEnvironmentVariable("DISCORD_TOKEN")!)
