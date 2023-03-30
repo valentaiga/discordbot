@@ -7,7 +7,7 @@ namespace DiscordBot.Infrastructure.Discord.Initialization;
 /// <summary>
 /// Initializes discord modules in <see cref="CommandService"/> from assembly 
 /// </summary>
-public class CommandsInitialization : IInitializationModule
+public class CommandsInitialization : InitializationModuleBase
 {
     private readonly CommandService _commandService;
     private readonly IServiceProvider _services;
@@ -20,7 +20,7 @@ public class CommandsInitialization : IInitializationModule
         _commandHandlingService = commandHandlingService;
     }
     
-    public ValueTask Init()
+    public override ValueTask InitializeAsync()
     {
         _commandService.AddModulesAsync(typeof(CommandsInitialization).Assembly, _services);
         return ValueTask.CompletedTask;

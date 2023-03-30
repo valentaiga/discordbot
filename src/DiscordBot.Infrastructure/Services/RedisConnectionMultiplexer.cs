@@ -5,7 +5,7 @@ using StackExchange.Redis;
 
 namespace DiscordBot.Infrastructure.Services;
 
-public class RedisConnectionMultiplexer : IRedisConnectionMultiplexer
+public class RedisConnectionMultiplexer : IRedisConnectionMultiplexer, IDisposable
 {
     private readonly ConfigurationOptions _config;
     private readonly SemaphoreSlim _locker = new(1); 
@@ -36,5 +36,10 @@ public class RedisConnectionMultiplexer : IRedisConnectionMultiplexer
         _multiplexer ??= await ConnectionMultiplexer.ConnectAsync(_config);
         _locker.Release();
         return _multiplexer;
+    }
+
+    public void Dispose()
+    {
+        _multiplexer?.Dispose();
     }
 }

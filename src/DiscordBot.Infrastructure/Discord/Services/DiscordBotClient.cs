@@ -28,7 +28,7 @@ public class DiscordBotClient
         
         foreach (var module in _initModules)
         {
-            await module.Init();
+            await module.InitAsync();
         }
     }
 
