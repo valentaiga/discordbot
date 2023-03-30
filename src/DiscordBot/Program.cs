@@ -4,14 +4,12 @@ using System.Text.Unicode;
 using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
-using DiscordBot.Application.Options;
-using DiscordBot.Application.Services.Redis;
 using DiscordBot.Domain.Abstractions;
 using DiscordBot.Domain.Options;
 using DiscordBot.Domain.Primitives;
+using DiscordBot.Infrastructure.Common.Redis;
 using DiscordBot.Infrastructure.Discord.Initialization;
 using DiscordBot.Infrastructure.Discord.Services;
-using DiscordBot.Infrastructure.Services;
 
 var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices(ConfigureServices)
@@ -51,12 +49,9 @@ void ConfigureServices(IServiceCollection services)
         .Configure(_ => _.Token = Environment.GetEnvironmentVariable("DISCORD_TOKEN")!)
         .ValidateDataAnnotations();
 
-    services.AddSingleton<IRedisProvider, RedisProvider>();
-    services.AddSingleton<IRedisConnectionMultiplexer, RedisConnectionMultiplexer>();
-    services.AddOptions<RedisConfiguration>()
-        .Configure(_ =>
-        {
-            _.Endpoint = Environment.GetEnvironmentVariable("REDIS_ENDPOINT")!;
-            _.Password = Environment.GetEnvironmentVariable("REDIS_PASSWORD")!;
-        });
+    services.ConfigureRedisServices(_ =>
+    {
+        _.Endpoint = Environment.GetEnvironmentVariable("REDIS_ENDPOINT")!;
+        _.Password = Environment.GetEnvironmentVariable("REDIS_PASSWORD")!;
+    });
 }

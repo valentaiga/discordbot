@@ -1,7 +1,7 @@
 using System.Text.Json;
 using DiscordBot.Application.Services.Redis;
 
-namespace DiscordBot.Infrastructure.Services;
+namespace DiscordBot.Infrastructure.Common.Redis;
 
 public class RedisProvider : IRedisProvider
 {
