@@ -3,7 +3,7 @@ using Discord.Commands;
 using Discord.WebSocket;
 using IResult = Discord.Commands.IResult;
 
-namespace App.Infrastructure.Discord.Services;
+namespace DiscordBot.Infrastructure.Discord.Services;
 
 public class CommandHandlingService
 {

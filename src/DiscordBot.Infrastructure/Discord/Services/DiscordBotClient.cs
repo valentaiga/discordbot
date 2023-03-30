@@ -1,10 +1,10 @@
-using App.Domain.Options;
-using App.Domain.Primitives;
 using Discord;
 using Discord.WebSocket;
+using DiscordBot.Domain.Options;
+using DiscordBot.Domain.Primitives;
 using Microsoft.Extensions.Options;
 
-namespace App.Infrastructure.Discord.Services;
+namespace DiscordBot.Infrastructure.Discord.Services;
 
 public class DiscordBotClient
 {

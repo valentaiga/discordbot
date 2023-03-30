@@ -2,7 +2,7 @@ using System.Text;
 using Discord;
 using Discord.Commands;
 
-namespace App.Infrastructure.Discord.Modules;
+namespace DiscordBot.Infrastructure.Discord.Modules;
 
 [RequireContext(ContextType.Guild)]
 public class PublicModule : ModuleBase<SocketCommandContext>

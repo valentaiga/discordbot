@@ -1,4 +1,4 @@
-namespace App.Domain.Primitives;
+namespace DiscordBot.Domain.Primitives;
 
 public interface IInitializationModule
 {

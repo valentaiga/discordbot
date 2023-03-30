@@ -1,4 +1,4 @@
-namespace App.Domain.Options;
+namespace DiscordBot.Domain.Options;
 
 public class DiscordClientOptions
 {

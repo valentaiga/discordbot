@@ -1,8 +1,8 @@
-using App.Domain.Primitives;
-using App.Infrastructure.Discord.Services;
 using Discord.Commands;
+using DiscordBot.Domain.Primitives;
+using DiscordBot.Infrastructure.Discord.Services;
 
-namespace App.Infrastructure.Discord.Initialization;
+namespace DiscordBot.Infrastructure.Discord.Initialization;
 
 /// <summary>
 /// Initializes discord modules in <see cref="CommandService"/> from assembly 
