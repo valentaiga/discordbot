@@ -16,6 +16,7 @@ public class RedisConnectionMultiplexer : IRedisConnectionMultiplexer, IDisposab
         _config = new ConfigurationOptions
         {
             Password = options.Value.Password,
+            ConnectTimeout = (int)TimeSpan.FromSeconds(2).Ticks, 
             EndPoints =
             {
                 options.Value.Endpoint

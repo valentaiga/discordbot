@@ -6,7 +6,7 @@ using Microsoft.Extensions.Options;
 
 namespace DiscordBot.Infrastructure.Discord.Services;
 
-public class DiscordBotClient
+public class DiscordBotClient : IAsyncDisposable
 {
     private readonly DiscordSocketClient _client;
     private readonly IEnumerable<IInitializationModule> _initModules;
@@ -35,5 +35,10 @@ public class DiscordBotClient
     private async Task LoginAsync()
     {
         await _client.LoginAsync(TokenType.Bot, _settings.Token);
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        await _client.StopAsync();
     }
 }
