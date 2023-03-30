@@ -7,23 +7,18 @@ namespace DiscordBot.Infrastructure.Discord.Services;
 
 public class CommandHandlingService
 {
-    private readonly IServiceProvider _services;
     private readonly CommandService _commands;
     private readonly DiscordSocketClient _client;
+    private readonly IServiceProvider _services;
 
-    public CommandHandlingService(IServiceProvider services)
+    public CommandHandlingService(CommandService commands, DiscordSocketClient client, IServiceProvider services)
     {
+        _commands = commands;
+        _client = client;
         _services = services;
-        _commands = services.GetRequiredService<CommandService>();
-        _client = services.GetRequiredService<DiscordSocketClient>();
-        
-        _client.MessageReceived += MessageReceivedAsync;
-        _client.SlashCommandExecuted += ClientOnSlashCommandExecuted;
-        
-        _commands.CommandExecuted += CommandExecutedAsync;
     }
 
-    private async Task CommandExecutedAsync(Optional<CommandInfo> command, ICommandContext context, IResult result)
+    public async Task CommandExecutedAsync(Optional<CommandInfo> command, ICommandContext context, IResult result)
     {
         // command is unspecified when there was a search failure (command not found); we don't care about these errors
         if (!command.IsSpecified)
@@ -37,7 +32,7 @@ public class CommandHandlingService
         await context.Channel.SendMessageAsync($"error: {result}");
     }
 
-    private async Task MessageReceivedAsync(SocketMessage rawMsg)
+    public async Task MessageReceivedAsync(SocketMessage rawMsg)
     {
         if (rawMsg is not SocketUserMessage { Source: MessageSource.User } message)
             return;
@@ -48,10 +43,5 @@ public class CommandHandlingService
         
         var context = new SocketCommandContext(_client, message);
         await _commands.ExecuteAsync(context, argPos, _services);
-    }
-
-    private Task ClientOnSlashCommandExecuted(SocketSlashCommand rawCmd)
-    {
-        throw new NotImplementedException();
     }
 }
