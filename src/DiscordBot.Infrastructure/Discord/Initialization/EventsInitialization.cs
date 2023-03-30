@@ -23,8 +23,12 @@ public sealed class EventsInitialization : InitializationModuleBase
     
     public override async ValueTask InitializeAsync()
     {
-        var sub = await _multiplexer.GetSubscriberAsync(EventChannels.MessageEventChannel); 
-        _eventPublisher.SetMessageSubscriber(sub);
+        var messageSub = await _multiplexer.GetSubscriberAsync(EventChannels.MessageEventChannel); 
+        _eventPublisher.SetMessageSubscriber(messageSub);
         _client.MessageReceived += _eventPublisher.PublishMessageAsync;
+
+        var reactionSub = await _multiplexer.GetSubscriberAsync(EventChannels.ReactionEventChannel);
+        _eventPublisher.SetReactionSubscriber(reactionSub);
+        _client.ReactionAdded += _eventPublisher.PublishReactionAsync;
     }
 }
