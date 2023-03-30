@@ -43,7 +43,7 @@ public class CommandHandlingService
             return;
 
         var argPos = 0;
-        if (!message.HasCharPrefix('!', ref argPos))
+        if (!message.HasStringPrefix("t!", ref argPos))
             return;
         
         var context = new SocketCommandContext(_client, message);
