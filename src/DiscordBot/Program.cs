@@ -6,6 +6,7 @@ using Discord.Commands;
 using Discord.WebSocket;
 using DiscordBot.Application.Options;
 using DiscordBot.Application.Services.Redis;
+using DiscordBot.Domain.Abstractions;
 using DiscordBot.Domain.Options;
 using DiscordBot.Domain.Primitives;
 using DiscordBot.Infrastructure.Discord.Initialization;
@@ -34,6 +35,9 @@ void ConfigureServices(IServiceCollection services)
         .AddSingleton<CommandService>()
         .AddSingleton<CommandHandlingService>()
         .AddSingleton<DiscordBotClient>();
+
+    services.AddSingleton<IProfileService, ProfileService>();
+    services.AddSingleton<MessageBeautifier>();
 
     services.AddSingleton(_ => new JsonSerializerOptions()
     {
