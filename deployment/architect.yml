@@ -8,7 +8,7 @@ secrets:
     required: true
 services:
   discordbot:
-    image: discordbot
+#    image: discordbot
     environment:
       DISCORD_TOKEN: ${{ DISCORD_TOKEN }}
       REDIS_ENDPOINT: ${{ REDIS_ENDPOINT }}
@@ -18,7 +18,7 @@ services:
       dockerfile: DiscordBot.Dockerfile
     reserved_name: discordbot
   event-processor:
-    image: event-processor
+#    image: event-processor
     environment:
       REDIS_ENDPOINT: ${{ REDIS_ENDPOINT }}
       REDIS_PASSWORD: ${{ REDIS_PASSWORD }}
