@@ -3,7 +3,7 @@ using DiscordBot.Application.Services.Redis;
 using Microsoft.Extensions.Options;
 using StackExchange.Redis;
 
-namespace DiscordBot.Infrastructure.Common.Redis;
+namespace DiscordBot.Infrastructure.Redis;
 
 public class RedisConnectionMultiplexer : IRedisConnectionMultiplexer, IDisposable
 {

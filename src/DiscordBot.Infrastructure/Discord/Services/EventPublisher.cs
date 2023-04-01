@@ -26,11 +26,16 @@ public class EventPublisher
         if (MessageSubscriber is null) return;
         if (msg.Author.IsBot) return;
         if (string.IsNullOrEmpty(msg.Content)) return;
+        if (msg.Author is not SocketGuildUser author) return;
         if (msg.Channel is not SocketTextChannel channel) return;
 
-        var senderId = msg.Author.Id;
+        var senderId = author.Id;
         var guildId = channel.Guild.Id;
-        var ev = new MessageEvent(senderId, guildId, msg.Content);
+        var ev = new MessageEvent(guildId,
+            senderId,
+            author.Username,
+            author.Nickname,
+            msg.Content);
 
         var json = JsonSerializer.Serialize(ev, _serializerOptions);
         await MessageSubscriber.PublishAsync(

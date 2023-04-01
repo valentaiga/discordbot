@@ -1,6 +1,7 @@
 using System.Text;
 using Discord;
 using Discord.Commands;
+using Discord.WebSocket;
 using DiscordBot.Domain.Abstractions;
 using DiscordBot.Infrastructure.Discord.Services;
 
@@ -48,7 +49,7 @@ public class PublicModule : ModuleBase<SocketCommandContext>
     public async Task Profile(IUser? user = null)
     {
         var guildId = Context.Guild.Id;
-        var dsUser = user ?? Context.User;
+        var dsUser = (SocketGuildUser)(user ?? Context.User);
         var profile = await _profileService.GetAsync(guildId, dsUser.Id);
 
         var msg = _beautifier.BeautifyProfile(profile, dsUser);

@@ -10,4 +10,12 @@ services:
       - REDIS_PASSWORD=${REDIS_PASSWORD}
     build:
       context: ../.
-      dockerfile: Dockerfile
+      dockerfile: DiscordBot.Dockerfile
+  event-processor:
+    image: event-processor
+    environment:
+      - REDIS_ENDPOINT=${REDIS_ENDPOINT}
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+    build:
+      context: ../.
+      dockerfile: EventProcessor.Dockerfile

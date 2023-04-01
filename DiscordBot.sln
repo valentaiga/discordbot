@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordBot.Domain", "src\Di
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordBot.Application", "src\DiscordBot.Application\DiscordBot.Application.csproj", "{3AD5C4B4-2866-4F06-A6A8-2D18018CD686}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordBot.Infrastructure.Common", "src\DiscordBot.Infrastructure.Common\DiscordBot.Infrastructure.Common.csproj", "{FCB5FF71-EE21-4386-9B04-D12A0907FFD6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventProcessor", "src\EventProcessor\EventProcessor.csproj", "{78CD84B1-EEC2-44F5-A759-58944D9E6B83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,9 +35,9 @@ Global
 		{3AD5C4B4-2866-4F06-A6A8-2D18018CD686}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AD5C4B4-2866-4F06-A6A8-2D18018CD686}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AD5C4B4-2866-4F06-A6A8-2D18018CD686}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FCB5FF71-EE21-4386-9B04-D12A0907FFD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FCB5FF71-EE21-4386-9B04-D12A0907FFD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FCB5FF71-EE21-4386-9B04-D12A0907FFD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FCB5FF71-EE21-4386-9B04-D12A0907FFD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78CD84B1-EEC2-44F5-A759-58944D9E6B83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78CD84B1-EEC2-44F5-A759-58944D9E6B83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78CD84B1-EEC2-44F5-A759-58944D9E6B83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78CD84B1-EEC2-44F5-A759-58944D9E6B83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

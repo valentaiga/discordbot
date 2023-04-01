@@ -1,7 +1,7 @@
 using DiscordBot.Application.Options;
 using DiscordBot.Application.Services.Redis;
 
-namespace DiscordBot.Infrastructure.Common.Redis;
+namespace DiscordBot.Infrastructure.Redis;
 
 public static class RedisAppExtensions
 {

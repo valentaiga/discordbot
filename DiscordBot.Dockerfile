@@ -4,7 +4,6 @@ COPY ["src/DiscordBot/DiscordBot.csproj", "src/DiscordBot/"]
 COPY ["src/DiscordBot.Application/DiscordBot.Application.csproj", "src/DiscordBot.Application/"]
 COPY ["src/DiscordBot.Domain/DiscordBot.Domain.csproj", "src/DiscordBot.Domain/"]
 COPY ["src/DiscordBot.Infrastructure/DiscordBot.Infrastructure.csproj", "src/DiscordBot.Infrastructure/"]
-COPY ["src/DiscordBot.Infrastructure.Common/DiscordBot.Infrastructure.Common.csproj", "src/DiscordBot.Infrastructure.Common/"]
 
 COPY . .
 WORKDIR src/DiscordBot

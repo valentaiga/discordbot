@@ -1,15 +1,13 @@
-﻿using System.Text.Encodings.Web;
-using System.Text.Json;
-using System.Text.Unicode;
-using Discord;
+﻿using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
+using DiscordBot.Application;
 using DiscordBot.Domain.Abstractions;
 using DiscordBot.Domain.Options;
 using DiscordBot.Domain.Primitives;
-using DiscordBot.Infrastructure.Common.Redis;
 using DiscordBot.Infrastructure.Discord.Initialization;
 using DiscordBot.Infrastructure.Discord.Services;
+using DiscordBot.Infrastructure.Redis;
 
 var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices(ConfigureServices)
@@ -39,11 +37,7 @@ void ConfigureServices(IServiceCollection services)
     services.AddSingleton<IProfileService, ProfileService>();
     services.AddSingleton<MessageBeautifier>();
 
-    services.AddSingleton(_ => new JsonSerializerOptions()
-    {
-        WriteIndented = false,
-        Encoder = JavaScriptEncoder.Create(UnicodeRanges.Cyrillic, UnicodeRanges.BasicLatin)
-    });
+    services.ConfigureJsonSettings();
 
     services.AddSingleton<IInitializationModule, CommandsInitialization>();
     services.AddSingleton<IInitializationModule, EventsInitialization>();
