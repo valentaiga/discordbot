@@ -2,7 +2,6 @@
 using DiscordBot.Domain.Abstractions;
 using DiscordBot.Infrastructure.Discord.Services;
 using DiscordBot.Infrastructure.Redis;
-using EventProcessor;
 using EventProcessor.Handlers;
 
 IHost host = Host.CreateDefaultBuilder(args)
