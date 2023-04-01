@@ -1,0 +1,21 @@
+name: discordbot
+services:
+  discordbot:
+    image: discordbot
+    environment:
+      DISCORD_TOKEN: ${DISCORD_TOKEN}
+      REDIS_ENDPOINT: ${REDIS_ENDPOINT}
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+    build:
+      context: ../.
+      dockerfile: DiscordBot.Dockerfile
+    reserved_name: discordbot
+  event-processor:
+    image: event-processor
+    environment:
+      REDIS_ENDPOINT: ${REDIS_ENDPOINT}
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+    build:
+      context: ../.
+      dockerfile: EventProcessor.Dockerfile
+    reserved_name: event-processor
