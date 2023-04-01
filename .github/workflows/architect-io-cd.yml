@@ -9,13 +9,13 @@ env:
   ARCHITECT_GENERATED: true
   ARCHITECT_BRANCH: true
   COMPONENT_FILE_PATH: deployment/architect.yml
-  ARCHITECT_ACCOUNT: ${{ secrets.ARCHITECT_ACCOUNT }}
-  COMPONENT_NAME: ${{ secrets.ARCHITECT_COMPONENT }}
-  ENVIRONMENT_NAME: ${{ secrets.ARCHITECT_ENVIRONMENT }}
+  ARCHITECT_ACCOUNT: taigadev-io
+  COMPONENT_NAME: discordbot
+  ENVIRONMENT_NAME: discord-bot-github
   BRANCH_NAME: master
 
 jobs:
-  architect_create_branch_deployments:
+  architect_on_push_deployments:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -28,10 +28,8 @@ jobs:
       - name: Install Architect CLI
         run: npm install -g @architect-io/cli
       - name: Login to Architect Cloud
-        run:
-          architect login -e ${{ secrets.ARCHITECT_EMAIL }} -p ${{ secrets.ARCHITECT_PASSWORD }}
+        run: architect login -e ${{ secrets.ARCHITECT_EMAIL }} -p ${{ secrets.ARCHITECT_PASSWORD }}
       - name: Register component w/ Architect
         run: architect register ${{ env.COMPONENT_FILE_PATH }} -t latest
       - name: Deploy component
-        run:
-          architect deploy --auto-approve -e ${{ env.ENVIRONMENT_NAME }} ${{ env.COMPONENT_NAME }}:latest
+        run: architect deploy --auto-approve -e ${{ env.ENVIRONMENT_NAME }} ${{ env.COMPONENT_NAME }}:latest
