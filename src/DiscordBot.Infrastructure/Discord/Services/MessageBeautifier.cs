@@ -17,8 +17,8 @@ public class MessageBeautifier
         var name = profile.Nickname ?? profile.Username;
         return BuildEmbed(Color.Gold)
             .WithTitle(name)
-            .AddField("Karma", $"{profile.Collectors.Karma} {Emojis.CloverEmote}", true)
             .AddField("Cookies", $"{profile.Collectors.Cookies} {Emojis.CookieEmote}", true)
+            .AddField("Karma", $"{profile.Collectors.Karma} {Emojis.CloverEmote}", true)
             .AddField("Clowns", $"{profile.Collectors.Clowns} {Emojis.ClownEmote}", true)
             .AddField("Joined server at", dsUser.JoinedAt!.Value.ToString("Y"))
             .WithThumbnailUrl(dsUser.GetAvatarUrl(size: 80))
