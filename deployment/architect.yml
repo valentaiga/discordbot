@@ -10,9 +10,9 @@ services:
   discordbot:
     image: discordbot
     environment:
-      DISCORD_TOKEN: ${{ DISCORD_TOKEN }}
-      REDIS_ENDPOINT: ${{ REDIS_ENDPOINT }}
-      REDIS_PASSWORD: ${{ REDIS_PASSWORD }}
+      DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+      REDIS_ENDPOINT: ${{ secrets.REDIS_ENDPOINT }}
+      REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
     build:
       context: ../.
       dockerfile: DiscordBot.Dockerfile
@@ -20,8 +20,8 @@ services:
   event-processor:
     image: event-processor
     environment:
-      REDIS_ENDPOINT: ${{ REDIS_ENDPOINT }}
-      REDIS_PASSWORD: ${{ REDIS_PASSWORD }}
+      REDIS_ENDPOINT: ${{ secrets.REDIS_ENDPOINT }}
+      REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
     build:
       context: ../.
       dockerfile: EventProcessor.Dockerfile
