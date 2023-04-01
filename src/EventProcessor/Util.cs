@@ -16,7 +16,7 @@ public static class Util
         string? username = null,
         ulong addExperience = 0)
     {
-        profile.Username = username;
+        if (username is not null) profile.Username = username;
         profile.Nickname = nickname;
         profile.Experience += addExperience;
     }

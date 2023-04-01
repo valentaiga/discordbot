@@ -4,17 +4,22 @@ namespace DiscordBot.Domain.Entities;
 
 public class UserProfile
 {
-    public ulong Id { get; init; }
+    public ulong Id { get; set; }
     public string? Username { get; set; }
     public string? Nickname { get; set; }
     public ulong Experience { get; set; }
-    public Collector Collectors { get; set; } = new();
+    public Collector Collectors { get; set; }
     
-    public UserProfile(ulong userId) => Id = userId;
+    public UserProfile(ulong userId)
+    {
+        Id = userId;
+        Collectors = new();
+    }
 
     [JsonConstructor]
     public UserProfile()
     {
+        Collectors = new();
     }
     
     public class Collector

@@ -3,6 +3,7 @@ using DiscordBot.Domain.Abstractions;
 using DiscordBot.Infrastructure.Discord.Services;
 using DiscordBot.Infrastructure.Redis;
 using EventProcessor;
+using EventProcessor.Handlers;
 
 IHost host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((context, services) =>
@@ -15,8 +16,11 @@ IHost host = Host.CreateDefaultBuilder(args)
         });
 
         services.AddSingleton<IProfileService, ProfileService>();
+        
         services.AddSingleton<MessageHandler>();
-        services.AddHostedService<MessageProcessor>();
+        services.AddSingleton<ReactionHandler>();
+        
+        services.AddHostedService<EventProcessor.EventProcessor>();
     })
     .Build();
 

@@ -1,7 +1,7 @@
 using DiscordBot.Application.Events;
 using DiscordBot.Domain.Abstractions;
 
-namespace EventProcessor;
+namespace EventProcessor.Handlers;
 
 internal sealed class MessageHandler
 {
@@ -12,12 +12,12 @@ internal sealed class MessageHandler
         _profileService = profileService;
     }
 
-    public async Task HandleMessageAsync(MessageEvent msg)
+    public async Task HandleAsync(MessageEvent ev)
     {
         var addExp = Util.CalculateExperience(); 
-        await _profileService.UpdateAsync(msg.GuildId, msg.SenderId, profile =>
+        await _profileService.UpdateAsync(ev.GuildId, ev.SenderId, profile =>
         {
-            Util.UpdateProfile(profile, msg.Nickname, msg.Username, addExp);
+            Util.UpdateProfile(profile, ev.Nickname, ev.Username, addExp);
         });
     }
 }
