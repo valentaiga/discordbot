@@ -29,7 +29,16 @@ public class CommandHandlingService
             return;
 
         // the command failed, let's notify the user that something happened.
-        await context.Channel.SendMessageAsync($"error: {result}");
+        if (result is ExecuteResult error)
+        {
+            await context.Channel.SendMessageAsync($@"error: `{error.Exception.Message}`
+```
+{error.Exception.StackTrace}
+```");
+            return;
+        }
+        
+        await context.Channel.SendMessageAsync($"error: `{result.Error}:{result.ErrorReason}`");
     }
 
     public async Task MessageReceivedAsync(SocketMessage rawMsg)
