@@ -28,7 +28,7 @@ jobs:
       - name: Install Architect CLI
         run: npm install -g @architect-io/cli
       - name: Login to Architect Cloud
-        run: architect login -e ${{ secrets.ARCHITECT_EMAIL }} -p ${{ secrets.ARCHITECT_PASSWORD }}
+        run: architect login -e "${{ secrets.ARCHITECT_EMAIL }}" -p "${{ secrets.ARCHITECT_PASSWORD }}"
       - name: Register component w/ Architect
         run: architect register ${{ env.COMPONENT_FILE_PATH }} -t latest
       - name: Deploy component
