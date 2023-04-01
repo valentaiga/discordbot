@@ -1,9 +1,9 @@
-name: Architect main Branch Deployment
+name: Architect master Branch Deployment
 
 on:
   push:
     branches:
-      - main
+      - master
 
 env:
   ARCHITECT_GENERATED: true
@@ -12,7 +12,7 @@ env:
   ARCHITECT_ACCOUNT: ${{ secrets.ARCHITECT_ACCOUNT }}
   COMPONENT_NAME: ${{ secrets.ARCHITECT_COMPONENT }}
   ENVIRONMENT_NAME: ${{ secrets.ARCHITECT_ENVIRONMENT }}
-  BRANCH_NAME: main
+  BRANCH_NAME: master
 
 jobs:
   architect_create_branch_deployments:
