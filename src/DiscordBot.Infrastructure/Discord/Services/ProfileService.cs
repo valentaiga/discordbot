@@ -28,5 +28,5 @@ public class ProfileService : IProfileService
         return profile;
     }
 
-    private static string GetKey(ulong guildId, ulong userId) => $"{guildId}:{userId}";
+    private static string GetKey(ulong guildId, ulong userId) => $"{guildId}:users:{userId}";
 }

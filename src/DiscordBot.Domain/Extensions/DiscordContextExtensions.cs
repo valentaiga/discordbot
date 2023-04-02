@@ -1,5 +1,3 @@
-using System.Diagnostics;
-
 namespace DiscordBot.Domain.Extensions;
 
 public static class DiscordContextExtensions
