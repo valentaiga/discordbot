@@ -3,11 +3,13 @@ using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
 using DiscordBot.Domain.Abstractions;
+using DiscordBot.Domain.Preconditions;
 using DiscordBot.Infrastructure.Discord.Services;
 
 namespace DiscordBot.Infrastructure.Discord.Modules;
 
 [RequireContext(ContextType.Guild)]
+[RequiresCommandExecutionGrant]
 public class PublicModule : ModuleBase<SocketCommandContext>
 {
     private readonly CommandService _commandService;
@@ -23,11 +25,8 @@ public class PublicModule : ModuleBase<SocketCommandContext>
     
     [Command("help")]
     [Summary("get a list of all commands")]
-    [RequireUserPermission(ChannelPermission.SendMessages)]
     public async Task Help()
     {
-        await Context.Message.DeleteAsync();
-    
         var msg = new StringBuilder();
         msg.AppendLine("```js");
     
@@ -51,8 +50,8 @@ public class PublicModule : ModuleBase<SocketCommandContext>
         var guildId = Context.Guild.Id;
         var dsUser = (SocketGuildUser)(user ?? Context.User);
         var profile = await _profileService.GetAsync(guildId, dsUser.Id);
-
-        var msg = _beautifier.BeautifyProfile(profile, dsUser);
+        
+        var msg = _beautifier.BeautifyProfile(profile, dsUser, Context.Message.Content);
     
         await ReplyAsync(embed: msg);
     }

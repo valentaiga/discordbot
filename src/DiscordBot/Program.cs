@@ -35,6 +35,8 @@ void ConfigureServices(IServiceCollection services)
     services.AddSingleton<EventPublisher>();
     
     services.AddSingleton<IProfileService, ProfileService>();
+    services.AddSingleton<IPermissionService, PermissionService>();
+    services.AddSingleton<IGuildProvider, GuildProvider>();
     services.AddSingleton<MessageBeautifier>();
 
     services.ConfigureJsonSettings();

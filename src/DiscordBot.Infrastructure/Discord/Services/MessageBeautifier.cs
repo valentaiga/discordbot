@@ -7,15 +7,19 @@ namespace DiscordBot.Infrastructure.Discord.Services;
 
 public class MessageBeautifier
 {
+    private readonly Color _defaultColor;
+
     public MessageBeautifier()
     {
-        
+        _defaultColor = Color.Purple;
     }
 
-    public Embed BeautifyProfile(UserProfile profile, SocketGuildUser dsUser)
+    public Embed BeautifyProfile(UserProfile profile,
+        SocketGuildUser dsUser,
+        string? executedCommand = null)
     {
         var name = profile.Nickname ?? profile.Username;
-        return BuildEmbed(Color.Gold)
+        return BuildEmbed(_defaultColor, executedCommand)
             .WithTitle(name)
             .AddField("Cookies", $"{profile.Collectors.Cookies} {Emojis.CookieEmote}", true)
             .AddField("Karma", $"{profile.Collectors.Karma} {Emojis.CloverEmote}", true)
@@ -25,6 +29,15 @@ public class MessageBeautifier
             .Build();
     }
 
-    private static EmbedBuilder BuildEmbed(Color color)
-        => new EmbedBuilder().WithColor(color).WithCurrentTimestamp();
+    public Embed BuildEmbedLine(string? executedCommand)
+    {
+        return BuildEmbed(_defaultColor, executedCommand).Build();
+    }
+
+    private static EmbedBuilder BuildEmbed(Color color, string? executedCommand)
+    {
+        var embed = new EmbedBuilder().WithColor(color).WithCurrentTimestamp();
+        if (executedCommand is not null) embed.WithFooter(executedCommand);
+        return embed;
+    }
 }
