@@ -37,6 +37,7 @@ jobs:
       with:
         push: true
         file: TimedActionsWorker.Dockerfile
+        platform: linux/arm64
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/timed-action-sworker:latest         # GitHub Token used to authenticate against a repository for Git context
         github-token: ${{ github.token }} # optional, default is ${{ github.token }}
     - name: Build and push EventProcessor
@@ -44,6 +45,7 @@ jobs:
       with:
         push: true
         file: EventProcessor.Dockerfile
+        platform: linux/arm64
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/event-processor:latest         # GitHub Token used to authenticate against a repository for Git context
         github-token: ${{ github.token }} # optional, default is ${{ github.token }}
     - name: Build and push DiscordBot
@@ -51,6 +53,7 @@ jobs:
       with:
         push: true
         file: DiscordBot.Dockerfile
+        platform: linux/arm64
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/discordbot:latest         # GitHub Token used to authenticate against a repository for Git context
         github-token: ${{ github.token }} # optional, default is ${{ github.token }}
     
