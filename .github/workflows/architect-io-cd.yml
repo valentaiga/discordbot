@@ -10,7 +10,7 @@ env:
   ARCHITECT_BRANCH: true
   COMPONENT_FILE_PATH: deployment/architect.yml
   ARCHITECT_ACCOUNT: taigadev-io
-  COMPONENT_NAME: discordbot
+  COMPONENT_NAME: arch-io-cluster
   ENVIRONMENT_NAME: discord-bot-github
   BRANCH_NAME: master
 
