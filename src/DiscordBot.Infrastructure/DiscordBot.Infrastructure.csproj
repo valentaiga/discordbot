@@ -19,4 +19,8 @@
       <ProjectReference Include="..\DiscordBot.Domain\DiscordBot.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Discord\Services\Shop" />
+    </ItemGroup>
+
 </Project>

@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>dotnet-ShopWorker-98F10FB6-0782-4A68-A6F5-1BE899D0D18D</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Discord.Net.WebSocket" Version="3.10.0" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DiscordBot.Infrastructure\DiscordBot.Infrastructure.csproj" />
+    </ItemGroup>
+</Project>

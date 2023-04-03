@@ -1,4 +1,5 @@
 using Discord;
+using Discord.Rest;
 using Discord.WebSocket;
 using DiscordBot.Domain.Options;
 using DiscordBot.Domain.Primitives;
@@ -8,15 +9,18 @@ namespace DiscordBot.Infrastructure.Discord.Services;
 
 public class DiscordBotClient : IAsyncDisposable
 {
-    private readonly DiscordSocketClient _client;
+    private readonly DiscordSocketClient _socketClient;
+    private readonly DiscordRestClient _restClient;
     private readonly IEnumerable<IInitializationModule> _initModules;
     private readonly DiscordClientOptions _settings;
 
-    public DiscordBotClient(DiscordSocketClient client,
+    public DiscordBotClient(DiscordSocketClient socketClient,
+        DiscordRestClient restClient,
         IOptions<DiscordClientOptions> settings,
         IEnumerable<IInitializationModule> initModules)
     {
-        _client = client;
+        _socketClient = socketClient;
+        _restClient = restClient;
         _initModules = initModules;
         _settings = settings.Value;
     }
@@ -24,8 +28,8 @@ public class DiscordBotClient : IAsyncDisposable
     public async Task StartAsync()
     {
         await LoginAsync();
-        await _client.StartAsync();
-        
+        await _socketClient.StartAsync();
+
         foreach (var module in _initModules)
         {
             await module.InitAsync();
@@ -34,11 +38,14 @@ public class DiscordBotClient : IAsyncDisposable
 
     private async Task LoginAsync()
     {
-        await _client.LoginAsync(TokenType.Bot, _settings.Token);
+        await _socketClient.LoginAsync(TokenType.Bot, _settings.Token);
+        await _restClient.LoginAsync(TokenType.Bot, _settings.Token);
     }
 
     public async ValueTask DisposeAsync()
     {
-        await _client.StopAsync();
+        await _socketClient.StopAsync();
+        await _restClient.LogoutAsync();
+        await _socketClient.LogoutAsync();
     }
 }

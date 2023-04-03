@@ -1,6 +1,6 @@
 using System.Text.Json;
 using DiscordBot.Application;
-using DiscordBot.Application.Events;
+using DiscordBot.Application.Messages;
 using DiscordBot.Application.Services.Redis;
 using EventProcessor.Handlers;
 using StackExchange.Redis;
@@ -27,11 +27,11 @@ internal class EventProcessor : BackgroundService
     
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        var messageSubscriber = await _multiplexer.GetSubscriberAsync(EventChannels.MessageEventChannel);
-        var messageQueue = await messageSubscriber.SubscribeAsync(EventChannels.MessageEventChannel);
+        var messageSubscriber = await _multiplexer.GetSubscriberAsync(RedisChannels.MessageEventChannel);
+        var messageQueue = await messageSubscriber.SubscribeAsync(RedisChannels.MessageEventChannel);
         
-        var reactionSubscriber = await _multiplexer.GetSubscriberAsync(EventChannels.ReactionEventChannel);
-        var reactionQueue = await reactionSubscriber.SubscribeAsync(EventChannels.ReactionEventChannel);
+        var reactionSubscriber = await _multiplexer.GetSubscriberAsync(RedisChannels.ReactionEventChannel);
+        var reactionQueue = await reactionSubscriber.SubscribeAsync(RedisChannels.ReactionEventChannel);
         
         messageQueue.OnMessage(ProcessMessage);
         reactionQueue.OnMessage(ProcessReaction);

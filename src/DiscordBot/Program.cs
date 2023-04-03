@@ -1,5 +1,6 @@
 ﻿using Discord;
 using Discord.Commands;
+using Discord.Rest;
 using Discord.WebSocket;
 using DiscordBot.Application;
 using DiscordBot.Domain.Abstractions;
@@ -28,6 +29,7 @@ void ConfigureServices(IServiceCollection services)
             GatewayIntents = GatewayIntents.All
         })
         .AddSingleton<DiscordSocketClient>()
+        .AddSingleton<DiscordRestClient>()
         .AddSingleton<CommandService>()
         .AddSingleton<CommandHandlingService>()
         .AddSingleton<DiscordBotClient>();

@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordBot.Application", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventProcessor", "src\EventProcessor\EventProcessor.csproj", "{78CD84B1-EEC2-44F5-A759-58944D9E6B83}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimedActionsWorker", "src\TimedActionsWorker\TimedActionsWorker.csproj", "{693072D2-C0F7-475A-85FB-4B4612CC4A7B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,5 +41,9 @@ Global
 		{78CD84B1-EEC2-44F5-A759-58944D9E6B83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78CD84B1-EEC2-44F5-A759-58944D9E6B83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78CD84B1-EEC2-44F5-A759-58944D9E6B83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{693072D2-C0F7-475A-85FB-4B4612CC4A7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{693072D2-C0F7-475A-85FB-4B4612CC4A7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{693072D2-C0F7-475A-85FB-4B4612CC4A7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{693072D2-C0F7-475A-85FB-4B4612CC4A7B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

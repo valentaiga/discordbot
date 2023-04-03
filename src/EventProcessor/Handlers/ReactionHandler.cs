@@ -1,5 +1,5 @@
 using DiscordBot.Application;
-using DiscordBot.Application.Events;
+using DiscordBot.Application.Messages;
 using DiscordBot.Domain.Abstractions;
 using DiscordBot.Domain.Entities;
 

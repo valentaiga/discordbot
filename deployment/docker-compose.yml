@@ -19,3 +19,12 @@ services:
     build:
       context: ../.
       dockerfile: EventProcessor.Dockerfile
+  timed-actions-worker:
+    image: timed-actions-worker
+    environment:
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
+      - REDIS_ENDPOINT=${REDIS_ENDPOINT}
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+    build:
+      context: ../.
+      dockerfile: TimedActionsWorker.Dockerfile

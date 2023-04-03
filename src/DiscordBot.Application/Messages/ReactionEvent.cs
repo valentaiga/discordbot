@@ -1,4 +1,4 @@
-namespace DiscordBot.Application.Events;
+namespace DiscordBot.Application.Messages;
 
 public record struct ReactionEvent(ulong GuildId,
     ulong ReactionAuthorId,

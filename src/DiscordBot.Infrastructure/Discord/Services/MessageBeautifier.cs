@@ -29,9 +29,9 @@ public class MessageBeautifier
             .Build();
     }
 
-    public Embed BuildEmbedLine(string? executedCommand)
+    public EmbedBuilder BuildEmbedLine(string? executedCommand)
     {
-        return BuildEmbed(_defaultColor, executedCommand).Build();
+        return BuildEmbed(_defaultColor, executedCommand);
     }
 
     private static EmbedBuilder BuildEmbed(Color color, string? executedCommand)

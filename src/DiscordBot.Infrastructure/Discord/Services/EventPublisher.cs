@@ -2,7 +2,7 @@ using System.Text.Json;
 using Discord;
 using Discord.WebSocket;
 using DiscordBot.Application;
-using DiscordBot.Application.Events;
+using DiscordBot.Application.Messages;
 using StackExchange.Redis;
 
 namespace DiscordBot.Infrastructure.Discord.Services;
@@ -39,7 +39,7 @@ public class EventPublisher
 
         var json = JsonSerializer.Serialize(ev, _serializerOptions);
         await MessageSubscriber.PublishAsync(
-            EventChannels.MessageEventChannel,
+            RedisChannels.MessageEventChannel,
             json);
     }
 
@@ -66,7 +66,7 @@ public class EventPublisher
 
         var json = JsonSerializer.Serialize(ev, _serializerOptions);
         await ReactionSubscriber.PublishAsync(
-            EventChannels.ReactionEventChannel,
+            RedisChannels.ReactionEventChannel,
             json);
     }
 }

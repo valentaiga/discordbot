@@ -1,4 +1,4 @@
-using DiscordBot.Application.Events;
+using DiscordBot.Application.Messages;
 using DiscordBot.Domain.Abstractions;
 
 namespace EventProcessor.Handlers;

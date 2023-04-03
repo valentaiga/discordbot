@@ -24,3 +24,12 @@ services:
       context: ../.
       dockerfile: EventProcessor.Dockerfile
     reserved_name: event-processor
+  timed-actions-worker:
+    environment:
+      DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+      REDIS_ENDPOINT: ${{ secrets.REDIS_ENDPOINT }}
+      REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
+    build:
+      context: ../.
+      dockerfile: TimedActionsWorker.Dockerfile
+    reserved_name: timed-actions-worker
