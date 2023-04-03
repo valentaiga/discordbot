@@ -22,12 +22,12 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
-    - name: Build and push TimedActionsWorker
+    - name: Push TimedActionsWorker Image
       uses: docker/build-push-action@v4.0.0
       with:
         push: true
         file: TimedActionsWorker.Dockerfile
-        platforms: linux/arm64v8
+        platforms: linux/arm64
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/timed-actions-worker:latest
         github-token: ${{ github.token }} 
   build-event-processor:
@@ -45,12 +45,12 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
-    - name: Build and push EventProcessor
+    - name: Push EventProcessor Image
       uses: docker/build-push-action@v4.0.0
       with:
         push: true
         file: EventProcessor.Dockerfile
-        platforms: linux/arm64v8
+        platforms: darwin/arm64
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/event-processor:latest         # GitHub Token used to authenticate against a repository for Git context
         github-token: ${{ github.token }} # optional, default is ${{ github.token }}
   build-discordbot:
@@ -68,12 +68,12 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
-    - name: Build and push DiscordBot
+    - name: Push DiscordBot Image
       uses: docker/build-push-action@v4.0.0
       with:
         push: true
         file: DiscordBot.Dockerfile
-        platforms: linux/arm64v8
+        platforms: linux/arm64
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/discordbot:latest         # GitHub Token used to authenticate against a repository for Git context
         github-token: ${{ github.token }} # optional, default is ${{ github.token }}
     
