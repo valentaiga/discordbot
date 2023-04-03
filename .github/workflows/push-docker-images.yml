@@ -3,8 +3,6 @@ name: Build & Push images to dockerhub
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 jobs:
   build-timed-actions-worker:
@@ -27,7 +25,7 @@ jobs:
       with:
         push: true
         file: TimedActionsWorker.Dockerfile
-        platforms: linux/arm64
+        platforms: linux/amd64,linux/arm64,linux/arm/v8
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/timed-actions-worker:latest
         github-token: ${{ github.token }} 
   build-event-processor:
@@ -50,7 +48,7 @@ jobs:
       with:
         push: true
         file: EventProcessor.Dockerfile
-        platforms: darwin/arm64
+        platforms: linux/amd64,linux/arm64,linux/arm/v8
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/event-processor:latest         # GitHub Token used to authenticate against a repository for Git context
         github-token: ${{ github.token }} # optional, default is ${{ github.token }}
   build-discordbot:
@@ -73,7 +71,7 @@ jobs:
       with:
         push: true
         file: DiscordBot.Dockerfile
-        platforms: linux/arm64
+        platforms: linux/amd64,linux/arm64,linux/arm/v8
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/discordbot:latest         # GitHub Token used to authenticate against a repository for Git context
         github-token: ${{ github.token }} # optional, default is ${{ github.token }}
     
