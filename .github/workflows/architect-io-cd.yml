@@ -1,9 +1,10 @@
 name: Architect master Branch Deployment
 
+# NEVER RUNS TILL ARM64 ARCHITECTURE.IO SUPPORT
 on:
   push:
     branches:
-      - master
+      - never
 
 env:
   ARCHITECT_GENERATED: true
