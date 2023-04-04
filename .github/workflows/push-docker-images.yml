@@ -13,6 +13,27 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
+    - name: SSH-Compose
+      # You may pin to the exact commit or the version.
+      # uses: matiasnu/github-action-ssh-docker-compose@d2e13949c92cb86a69ea36e83ebaa01d6d01de9c
+      uses: matiasnu/github-action-ssh-docker-compose@v2.0.1
+      with:
+        # Private SSH key used for logging into remote system.
+        ssh_private_key: ${{ secrets.REMOTE_SSH_PRIVATE_KEY }}
+        # Remote host name.
+        ssh_host: ${{ secrets.REMOTE_HOST }}
+        # Remote SSH port.
+        ssh_port: 23 # default is 22
+        # Remote user name.
+        ssh_user: opc
+        # Prefix for docker-compose containers.
+        docker_compose_prefix: r
+        # Docker compose file to use
+        docker_compose_filename: deployment/docker-compose.yml # optional, default is docker-compose.yaml
+        # Use docker stack instead of docker compose ("true" or "false").
+        use_stack: true # optional, default is false
+        # Execute docker-compose-down ("true" or "false").
+        docker_compose_down: false # optional, default is false
         
     - name: Docker Swarm
       uses: wshihadeh/docker-deployment-action@v2
