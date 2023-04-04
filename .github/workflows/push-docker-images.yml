@@ -23,7 +23,7 @@ jobs:
         # Remote host name.
         ssh_host: ${{ secrets.REMOTE_HOST }}
         # Remote SSH port.
-        ssh_port: 23 # default is 22
+        ssh_port: 22 # default is 22
         # Remote user name.
         ssh_user: opc
         # Prefix for docker-compose containers.
