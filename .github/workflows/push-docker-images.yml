@@ -23,6 +23,7 @@ jobs:
         ssh_private_key: ${{ secrets.REMOTE_SSH_PRIVATE_KEY }}
         stack_file_name: /deployment/docker-compose.yml
         pull_images_first: false
+        args: discordbot
   build-timed-actions-worker:
     if: ${{ false }}  # disable for now
     runs-on: ubuntu-latest
