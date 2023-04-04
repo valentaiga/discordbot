@@ -25,7 +25,7 @@ jobs:
         # Remote SSH port.
         ssh_port: 22 # default is 22
         # Remote user name.
-        ssh_user: opc
+        ssh_user: docker-deploy
         # Prefix for docker-compose containers.
         docker_compose_prefix: r
         # Docker compose file to use
