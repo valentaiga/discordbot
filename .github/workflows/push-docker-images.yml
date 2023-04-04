@@ -17,14 +17,14 @@ jobs:
     - name: Docker Swarm
       uses: wshihadeh/docker-deployment-action@v2
       with:
-        deployment_mode: docker-compose
+       # deployment_mode: docker-compose
         remote_docker_host: ${{ secrets.REMOTE_HOST }}
         remote_docker_port: 23
         ssh_public_key: ${{ secrets.SSH_PUBLIC_KEY }}
         ssh_private_key: ${{ secrets.REMOTE_SSH_PRIVATE_KEY }}
         stack_file_name: /deployment/docker-compose.yml
-        pull_images_first: false
-        args: docker-compose
+        deployment_mode: docker-swarm
+        copy_stack_file: true
   build-timed-actions-worker:
     if: ${{ false }}  # disable for now
     runs-on: ubuntu-latest
