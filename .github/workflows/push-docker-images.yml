@@ -13,15 +13,6 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
-    - name: docker-swarm-deployer
-      # You may pin to the exact commit or the version.
-      uses: simbamarufu1/docker-swarm-deploy-action@e2866bcfc8925123a77296b8fcb9562b8af1c477
-      # uses: simbamarufu1/docker-swarm-deploy-action@1.0.3
-      with:
-        remote_host: ${{ secrets.REMOTE_HOST }}
-        ssh_public_key: ${{ secrets.SSH_PUBLIC_KEY }}
-        ssh_private_key: ${{ secrets.REMOTE_SSH_PRIVATE_KEY }}
-        args: stack deploy --compose-file deployment/docker-compose.yaml discordapp
         
     - name: Docker Swarm
       uses: wshihadeh/docker-deployment-action@v2
@@ -33,7 +24,7 @@ jobs:
         ssh_private_key: ${{ secrets.REMOTE_SSH_PRIVATE_KEY }}
         stack_file_name: /deployment/docker-compose.yml
         pull_images_first: false
-        args: -e env=env
+        args: docker-compose
   build-timed-actions-worker:
     if: ${{ false }}  # disable for now
     runs-on: ubuntu-latest
