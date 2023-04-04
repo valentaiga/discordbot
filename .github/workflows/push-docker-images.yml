@@ -18,11 +18,13 @@ jobs:
       with:
         deployment_mode: docker-compose
         remote_docker_host: ${{ secrets.REMOTE_HOST }}
-#        ssh_public_key: ${{ secrets.REMOTE_SSH_PUBLIC_KEY }}
-        ssh_private_key: ${{ secrets.REMOTE_SSH_PUBLIC_KEY }}
+        remote_docker_port: 23
+        ssh_public_key: ${{ secrets.REMOTE_SSH_PUBLIC_KEY }}
+        ssh_private_key: ${{ secrets.REMOTE_SSH_PRIVATE_KEY }}
         stack_file_name: /deployment/docker-compose.yml
         pull_images_first: false
   build-timed-actions-worker:
+    if: ${{ false }}  # disable for now
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -47,6 +49,7 @@ jobs:
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/timed-actions-worker:latest
         github-token: ${{ github.token }} 
   build-event-processor:
+    if: ${{ false }}  # disable for now
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -71,6 +74,7 @@ jobs:
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/event-processor:latest         # GitHub Token used to authenticate against a repository for Git context
         github-token: ${{ github.token }} # optional, default is ${{ github.token }}
   build-discordbot:
+    if: ${{ false }}  # disable for now
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
